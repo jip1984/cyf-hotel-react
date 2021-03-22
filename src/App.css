@@ -1,5 +1,5 @@
 .App {
-  text-align: left;
+  text-align: center;
 }
 
 .App-logo {
@@ -90,4 +90,27 @@ tr {
 
 .card {
   width: 18rem;
+}
+
+.orders-container {
+  height: auto;
+  max-width: 80%;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  margin-top: 4rem;
+  margin-left: 10rem;
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.resturant-heading {
+  margin-top: 2rem;
+}
+
+.order-li {
+  list-style: none;
 }

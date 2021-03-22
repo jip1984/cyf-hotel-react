@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import Bookings from "./Bookings";
+import Restaurant from "./Restaurant";
 import InfoCards from "./InfoCards";
 import Footer from "./Footer";
 import SearchResults from "./SearchResults";
@@ -38,7 +39,7 @@ const App = () => {
       <Header />
       <InfoCards cards={cards} />
       <Bookings />
-      {/* <SearchResults /> */}
+      <Restaurant className="resturant" />
       <Footer address={address} />
     </div>
   );
