@@ -4,7 +4,6 @@ import Bookings from "./Bookings";
 import Restaurant from "./Restaurant";
 import InfoCards from "./InfoCards";
 import Footer from "./Footer";
-import SearchResults from "./SearchResults";
 import "./App.css";
 
 const cards = [

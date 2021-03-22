@@ -92,6 +92,11 @@ tr {
   width: 18rem;
 }
 
+.highlighted {
+  background-color: #333;
+  color: #fff;
+}
+
 .orders-container {
   height: auto;
   max-width: 80%;

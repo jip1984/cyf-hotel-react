@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
 
 function TableHead() {
@@ -20,10 +20,19 @@ function TableHead() {
 }
 
 function TableBody(props) {
+  const [selected, setSelected] = useState(false);
+  function changeColor() {
+    setSelected(!selected);
+  }
+
   return (
     <tbody>
       {props.bookings.map((booking, index) => (
-        <tr key={index}>
+        <tr
+          className={selected ? "highlighted" : null}
+          onClick={changeColor}
+          key={index}
+        >
           <th scope="row">{booking.id}</th>
           <td>{booking.title}</td>
           <td>{booking.firstName}</td>
