@@ -19,35 +19,42 @@ function TableHead() {
   );
 }
 
-function TableBody(props) {
-  const [selected, setSelected] = useState(false);
+function TableRow(props) {
+  const [selected, setSelected] = useState("nothighlited");
   function changeColor() {
-    setSelected(!selected);
+    setSelected(selected => {
+      if (selected === "nothighlighted") {
+        return "highlighted";
+      } else {
+        return "nothighlighted";
+      }
+    });
   }
+  return (
+    <tr className={selected} onClick={changeColor}>
+      <th scope="row">{props.booking.id}</th>
+      <td>{props.booking.title}</td>
+      <td>{props.booking.firstName}</td>
+      <td>{props.booking.surname}</td>
+      <td>{props.booking.email}</td>
+      <td>{props.booking.roomId}</td>
+      <td>{props.booking.checkInDate}</td>
+      <td>{props.booking.checkOutDate}</td>
+      <td>
+        {moment(props.booking.checkOutDate).diff(
+          moment(props.booking.checkInDate),
+          "Days"
+        )}
+      </td>
+    </tr>
+  );
+}
 
+function TableBody(props) {
   return (
     <tbody>
       {props.bookings.map((booking, index) => (
-        <tr
-          className={selected ? "highlighted" : null}
-          onClick={changeColor}
-          key={index}
-        >
-          <th scope="row">{booking.id}</th>
-          <td>{booking.title}</td>
-          <td>{booking.firstName}</td>
-          <td>{booking.surname}</td>
-          <td>{booking.email}</td>
-          <td>{booking.roomId}</td>
-          <td>{booking.checkInDate}</td>
-          <td>{booking.checkOutDate}</td>
-          <td>
-            {moment(booking.checkOutDate).diff(
-              moment(booking.checkInDate),
-              "Days"
-            )}
-          </td>
-        </tr>
+        <TableRow booking={booking} key={index} />
       ))}
     </tbody>
   );

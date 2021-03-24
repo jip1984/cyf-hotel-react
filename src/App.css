@@ -116,6 +116,10 @@ tr {
   margin-top: 2rem;
 }
 
+button {
+  margin: 0.25rem;
+}
+
 .order-li {
   list-style: none;
 }
