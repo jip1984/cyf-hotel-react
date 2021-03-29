@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CustomerProfile from "./CustomerProfile";
 import moment from "moment";
 
 function TableHead() {
@@ -14,6 +15,7 @@ function TableHead() {
         <th scope="col">Check in date</th>
         <th scope="col">Check out date</th>
         <th scope="col">Nights</th>
+        <th scope="col">Profile</th>
       </tr>
     </thead>
   );
@@ -30,6 +32,12 @@ function TableRow(props) {
       }
     });
   }
+
+  const [customerId, setCustomerId] = useState(null);
+  function handleClick() {
+    setCustomerId(1);
+  }
+
   return (
     <tr className={selected} onClick={changeColor}>
       <th scope="row">{props.booking.id}</th>
@@ -45,6 +53,12 @@ function TableRow(props) {
           moment(props.booking.checkInDate),
           "Days"
         )}
+      </td>
+      <td>
+        <button className="btn btn-primary" onClick={handleClick}>
+          {" "}
+          Show Profile
+        </button>
       </td>
     </tr>
   );
@@ -66,6 +80,7 @@ function SearchResults(props) {
       <table className="table">
         <TableHead />
         <TableBody bookings={props.results} />
+        <CustomerProfile id={customerId} />
       </table>
     </div>
   );
