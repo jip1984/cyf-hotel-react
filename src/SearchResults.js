@@ -4,7 +4,7 @@ import moment from "moment";
 
 function TableHead() {
   return (
-    <thead class="thead-dark">
+    <thead className="thead-dark">
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Title</th>
@@ -33,11 +33,6 @@ function TableRow(props) {
     });
   }
 
-  const [customerId, setCustomerId] = useState(null);
-  function handleClick() {
-    setCustomerId(1);
-  }
-
   return (
     <tr className={selected} onClick={changeColor}>
       <th scope="row">{props.booking.id}</th>
@@ -55,8 +50,10 @@ function TableRow(props) {
         )}
       </td>
       <td>
-        <button className="btn btn-primary" onClick={handleClick}>
-          {" "}
+        <button
+          className="btn btn-primary"
+          onClick={e => props.handleClick(e, props.booking.id)}
+        >
           Show Profile
         </button>
       </td>
@@ -68,20 +65,37 @@ function TableBody(props) {
   return (
     <tbody>
       {props.bookings.map((booking, index) => (
-        <TableRow booking={booking} key={index} />
+        <TableRow
+          booking={booking}
+          key={index}
+          handleClick={props.handleClick}
+        />
       ))}
     </tbody>
   );
 }
 
 function SearchResults(props) {
+  const [displayControl, displayControlHandler] = useState(false);
+  const [customerId, setCustomerId] = useState(null);
+  function handleClick(e, id) {
+    fetch(`https://cyf-react.glitch.me/customers/${id}`)
+      .then(response => response.json())
+      .then(data => {
+        setCustomerId(data);
+        console.log(data);
+        displayControlHandler(true);
+      });
+    // console.log(id);
+    // setCustomerId(id);
+  }
   return (
     <div>
       <table className="table">
         <TableHead />
-        <TableBody bookings={props.results} />
-        <CustomerProfile id={customerId} />
+        <TableBody bookings={props.results} handleClick={handleClick} />
       </table>
+      {displayControl ? <CustomerProfile customer={customerId} /> : null}
     </div>
   );
 }

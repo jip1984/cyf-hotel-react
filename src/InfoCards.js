@@ -4,7 +4,7 @@ function InfoCards(props) {
   return (
     <section className="cardSection">
       {props.cards.map((item, index) => (
-        <div className="card" Key={index}>
+        <div className="card" key={index}>
           <img src={item.img} alt={item.city} className="card-img-top" />
           <div className="card-body">
             <a
